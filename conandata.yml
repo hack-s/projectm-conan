@@ -1,0 +1,16 @@
+---
+sources:
+  4.1.0:
+    sha256: 8a289a7311d20ad76f9f142b10d7f52329e674279dc1bce86b2a85b065b341f2
+    url:
+      - https://github.com/projectM-visualizer/projectm/releases/download/v4.1.0/libprojectM-4.1.0.tar.gz
+
+dependencies:
+  4.1.0:
+    sdl: "[>=2.0.18]"
+    glm: cci.20230113
+    opengl: system
+    glew: 2.2.0
+    doxygen: 1.9.4
+
+patches:
