@@ -11,6 +11,6 @@ dependencies:
     glm: cci.20230113
     opengl: system
     glew: 2.2.0
-    doxygen: 1.9.4
+    gtest: 1.10.0
 
 patches:
