@@ -1,3 +1,5 @@
 /CMakeUserPresets.json
 /build/
 /test_package/CMakeUserPresets.json
+/cmake-build-debug/
+/test_package/build/

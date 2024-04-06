@@ -5,7 +5,7 @@ from collections import namedtuple
 
 class libprojectmRecipe(ConanFile):
     name = "libprojectm"
-    version = "4.1.0"
+    version = "4.1.1"
     package_type = "library"
 
     # Optional metadata
