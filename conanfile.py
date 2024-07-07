@@ -24,9 +24,6 @@ class libprojectmRecipe(ConanFile):
         # Enable building projectM playlist library
         "enable_playlist": [True, False],
 
-        # Enable building projectM developer test UI (based on sdl2)
-        "enable_sdl_ui": [True, False],
-
         # Enable using GLES instead of OpenGL Core Profile
         "enable_gles": [True, False],
 
@@ -53,7 +50,6 @@ class libprojectmRecipe(ConanFile):
         "shared": False,
         "fPIC": True,
         "enable_playlist": True,
-        "enable_sdl_ui": False,
         "enable_gles": False,
         "enable_boost_filesystem": False,
         "enable_dep_glm": False,
@@ -72,9 +68,6 @@ class libprojectmRecipe(ConanFile):
 
         # projectM main library
         "projectm": _ProjectMComponent(None, ["playlist"], [], ["projectM-4"]),
-
-        #projectM developer test ui app
-        "projectm-test-ui": _ProjectMComponent("enable_sdl_ui", ["projectm"], ["sdl::sdl"], []),
     }
 
     def config_options(self):
@@ -131,9 +124,6 @@ class libprojectmRecipe(ConanFile):
         if self.options.enable_dep_glm:
             self.requires(f"glm/{deps['glm']}")
 
-        if self.options.enable_sdl_ui:
-            self.requires(f"sdl/{deps['sdl']}")
-
         if self.settings.os == "Windows":
             self.requires(f"glew/{deps['glew']}")
 
@@ -150,7 +140,7 @@ class libprojectmRecipe(ConanFile):
         tc.variables['ENABLE_EMSCRIPTEN'] = False
         tc.variables['BUILD_TESTING'] = self.options.enable_tests
         tc.variables['BUILD_DOCS'] = False
-        tc.variables['ENABLE_SDL_UI'] = self.options.enable_sdl_ui
+        tc.variables['ENABLE_SDL_UI'] = False
         tc.variables['ENABLE_PLAYLIST'] = self.options.enable_playlist
         tc.variables['ENABLE_GLES'] = self.options.enable_gles
         tc.variables['ENABLE_SYSTEM_GLM'] = False
