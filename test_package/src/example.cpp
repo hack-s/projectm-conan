@@ -1,11 +1,6 @@
-#include "libprojectM/projectM.h"
-#include "libprojectM/playlist.h"
+#include "projectM-4/projectM.h"
 
 int main() {
-    auto projectMHandle = projectm_create();
-
-    auto playlistHandle = projectm_playlist_create(projectMHandle);
-    projectm_playlist_destroy(playlistHandle);
-
-    projectm_destroy(projectMHandle);
+    auto str = projectm_alloc_string(10);
+    projectm_free_string(str);
 }
