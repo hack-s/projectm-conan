@@ -1,12 +1,20 @@
 ---
 sources:
-  4.1.1:
-    sha256: 481c4bd18fd92e0046f0ce1a663a33df92822fb95c0a9aac8eab8317ddf46f11
-    url:
-      - https://github.com/projectM-visualizer/projectm/releases/download/v4.1.1/libprojectM-4.1.1.tar.gz
+  4.1.4:
+    commit: d0caed9554ef8870cd76be3f6014b4b058bd14d2
+
+  4.2.x:
+    commit: f3d6cca5ae15de240e6c6d98aec80c60489acd11
 
 dependencies:
-  4.1.1:
+  4.1.4:
+    sdl: "[>=2.0.18]"
+    glm: cci.20230113
+    opengl: system
+    glew: 2.2.0
+    gtest: 1.10.0
+    boost: "[>=1.71.0 <1.77.0]"
+  4.2.x:
     sdl: "[>=2.0.18]"
     glm: cci.20230113
     opengl: system

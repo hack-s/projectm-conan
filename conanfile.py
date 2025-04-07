@@ -1,11 +1,12 @@
 from conan import ConanFile
 from conan.tools.cmake import CMakeToolchain, CMake, cmake_layout, CMakeDeps
 from conan.tools.files import get, copy, rmdir
+from conan.tools.scm import Git
 from collections import namedtuple
 
 class libprojectmRecipe(ConanFile):
     name = "libprojectm"
-    version = "4.1.1"
+    version = "4.1.4"
     package_type = "library"
 
     # Optional metadata
@@ -53,7 +54,7 @@ class libprojectmRecipe(ConanFile):
         "enable_gles": False,
         "enable_boost_filesystem": False,
         "enable_dep_glm": False,
-        "enable_tests": True,
+        "enable_tests": False,
         "enable_cxx_interface": False,
         "use_local_source_dir": False,
         "local_source_dir": ''
@@ -100,18 +101,10 @@ class libprojectmRecipe(ConanFile):
         cmake_layout(self)
 
     def source(self):
-        if self.info.options.use_local_source_dir:
-            copy(self,
-                 '*',
-                 self.info.options.local_source_dir.value,
-                 '.'
-                 )
-        else:
-            get(
-                self,
-                **self.conan_data["sources"][self.version],
-                strip_root=True
-            )
+        git = Git(self)
+        git.clone(url="https://github.com/projectM-visualizer/projectm", target=".", args={"--recursive"})
+        #git.folder = "projectm"
+        git.checkout(commit=self.conan_data["sources"][self.version]["commit"])
 
     def requirements(self):
         deps = self.conan_data["dependencies"][self.version]
@@ -172,3 +165,4 @@ class libprojectmRecipe(ConanFile):
                     self.cpp_info.components[conan_component].libs = [ l + ("d" if self.settings.build_type == "Debug" else "") for l in comp.exported_libs ]
                 if requires:
                     self.cpp_info.components[conan_component].requires = requires
+
